@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
-from server.config import Config
+from .config import Config # <--- CHANGE THIS LINE
 from dotenv import load_dotenv
 import os
 
@@ -23,10 +23,11 @@ def create_app():
     migrate.init_app(app, db)
     jwt.init_app(app)
 
-    from server.controllers.auth_controller import auth_bp
-    from server.controllers.guest_controller import guest_bp
-    from server.controllers.episode_controller import episode_bp
-    from server.controllers.appearance_controller import appearance_bp
+    # <--- CHANGE THESE LINES TOO
+    from .controllers.auth_controller import auth_bp
+    from .controllers.guest_controller import guest_bp
+    from .controllers.episode_controller import episode_bp
+    from .controllers.appearance_controller import appearance_bp
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(guest_bp)
